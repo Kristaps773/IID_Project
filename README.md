@@ -1,6 +1,6 @@
 # Speech Recognition System
 
-A PyQt5-based speech recognition system that uses PANNs CNN14 for command recognition.
+A PyQt5-based speech recognition system that uses PANNs CNN14 for command recognition and includes a car control simulation UI.
 
 ## Features
 
@@ -8,7 +8,7 @@ A PyQt5-based speech recognition system that uses PANNs CNN14 for command recogn
 - Support for 10 commands: "yes", "no", "up", "down", "left", "right", "on", "off", "stop", "go"
 - Additional support for "silence" and "unknown" classes
 - Live audio processing and visualization
-- Statistics and process logs
+- Car control simulation via voice or buttons
 
 ## Requirements
 
@@ -46,16 +46,16 @@ python main.py
 ## Project Structure
 
 - `main.py`: Main application entry point
+- `load_model.py`: Model loading utility
 - `core/`: Core functionality
-  - `speech_recognition.py`: Speech recognition implementation
-  - `process_logs.py`: Process logging functionality
-  - `statistics.py`: Statistics tracking
+  - `speech_recognition_core.py`: Speech recognition and audio processing logic
 - `ui/`: User interface components
   - `speech_recognition_ui.py`: Main speech recognition UI
-  - `process_logs_ui.py`: Process logs UI
-  - `statistics_ui.py`: Statistics UI
-- `Models/`: Trained model files
-  - `speech_cmd_cnn14.pth`: Trained speech command model
+  - `car_control_ui.py`: Car control simulation UI
+- `Models/`: Trained model files and label encoder
+  - `cnn14.py`: Model architecture
+  - `label_encoder.pkl`: Label encoder for commands
+  - `best_model.pth`: Trained speech command model
 
 ## License
 
