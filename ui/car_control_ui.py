@@ -253,20 +253,25 @@ class CarControlUI(QWidget):
         """Draws the car on the scene with current position and rotation."""
         self.scene.clear()
         
-        car_path = QPainterPath()
-        car_path.moveTo(0, -15)  # Front point
-        car_path.lineTo(10, 15)  # Right rear
-        car_path.lineTo(-10, 15)  # Left rear
-        car_path.closeSubpath()
+        # Create larger car shape
+        car = QPainterPath()
+        car.moveTo(0, -30)
+        car.lineTo(60, 0)
+        car.lineTo(0, 30)
+        car.lineTo(-60, 30)
+        car.lineTo(-60, -30)
+        car.closeSubpath()
         
+        # Transform
         transform = QTransform()
         transform.translate(self.car_x, self.car_y)
         transform.rotate(self.car_angle)
+        car = transform.map(car)
         
-        car_path = transform.map(car_path)
-        self.scene.addPath(car_path, 
-                         QPen(QColor(self.colors['primary']), 2),
-                         QBrush(QColor(self.colors['primary'])))
+        # Draw with thicker outline
+        self.scene.addPath(car, 
+                           pen=QPen(QColor(self.colors['primary']), 3),
+                           brush=QBrush(QColor(self.colors['secondary'])))
 
     def update_car_position(self):
         if self.is_moving:
